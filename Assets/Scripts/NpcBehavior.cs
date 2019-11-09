@@ -15,6 +15,7 @@ public class NpcBehavior : MonoBehaviour {
     float MAX_MOVE_TIME = 0.2f;
     float MIN_DIRECTION_X = 0.5f;
     float MIN_DIRECTION_Y = 0.5f;
+    float CHANGE_TARGET_TO_WOOD_DISTANCE = 10;
     float ROTATE_ANGLE = 5;
     float changeTargetCounter, moveCounter, stopMoveCounter;
     float stopTime, changeTargetTime, moveTime;
@@ -85,15 +86,29 @@ public class NpcBehavior : MonoBehaviour {
     {
         GameObject obj = players[Random.Range(0, players.Length - 1)];
         obj = (Random.Range(0, 100) / 100.0f) > selectPlayerRatio ? wood : obj;
-        //Debug.Log("target: " + obj.name);
+        if (Mathf.Abs(transform.position.x - wood.transform.position.x) < CHANGE_TARGET_TO_WOOD_DISTANCE)
+        {
+            obj = wood;
+        }
+        Debug.Log("target: " + obj.name);
         return obj;
     }
     Vector3 getPosition()
     {
         Vector2 direction = (target.transform.position - transform.position).normalized;
         direction.x = direction.x > 0 ? direction.x : 0;
-        direction.y = direction.y > MIN_DIRECTION_Y ? 1 : direction.y;
-        direction.y = direction.y < -MIN_DIRECTION_Y ? -1 : 0;
+        if(direction.y > MIN_DIRECTION_Y)
+        {
+            direction.y = 1;
+        }
+        else if (direction.y < -MIN_DIRECTION_Y)
+        {
+            direction.y = -1;
+        }
+        else
+        {
+            direction.y = 0;
+        }
         direction.x = direction.x > MIN_DIRECTION_X ? 1 : 0;
         if(direction.y == 0 && direction.x == 0)
         {

@@ -16,8 +16,8 @@ public class Manager : MonoBehaviour {
         {
             GameObject obj = Instantiate(npc);
             obj.transform.position = new Vector3(
-                LeftTop.transform.position.x + Random.Range(-1, 1),
-                RightBottom.transform.position.y + offsetY * i,
+                LeftTop.transform.position.x + Random.Range(-1.0f, 1.0f),
+                RightBottom.transform.position.y + offsetY * i + Random.Range(-0.5f,0.5f),
                 obj.transform.position.z
             );
         }
