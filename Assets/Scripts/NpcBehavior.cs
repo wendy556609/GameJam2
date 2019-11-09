@@ -90,7 +90,7 @@ public class NpcBehavior : MonoBehaviour {
         {
             obj = wood;
         }
-        Debug.Log("target: " + obj.name);
+        //Debug.Log("target: " + obj.name);
         return obj;
     }
     Vector3 getPosition()
@@ -115,7 +115,12 @@ public class NpcBehavior : MonoBehaviour {
             direction.x = 1;
         }
         //Debug.Log("direction: " + direction);
-        return transform.position + new Vector3(direction.x, direction.y, 0) * Time.deltaTime * SPEED;
+        Vector3 position = transform.position + new Vector3(direction.x, direction.y, 0) * Time.deltaTime * SPEED;
+        if (Vector3.Distance(position, wood.transform.position) < 0.1f)
+        {
+            position = wood.transform.position;
+        }
+        return position;
     }
     Quaternion getRotation(bool isMove)
     {

@@ -398,6 +398,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 1.450938
       objectReference: {fileID: 0}
+    - target: {fileID: 114038800719735170, guid: 5bbeef7dc9cc087498c1092b13b021a2,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bbeef7dc9cc087498c1092b13b021a2, type: 2}
   m_IsPrefabAsset: 0
@@ -741,6 +746,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 1.450938
       objectReference: {fileID: 0}
+    - target: {fileID: 114911764190518186, guid: 90f7199efea95fb48b39b7f38f2c8e25,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90f7199efea95fb48b39b7f38f2c8e25, type: 2}
   m_IsPrefabAsset: 0
@@ -870,6 +880,11 @@ Prefab:
         type: 2}
       propertyPath: m_Size.x
       value: 1.364913
+      objectReference: {fileID: 0}
+    - target: {fileID: 114710622040485654, guid: 6051f0735dbc21c4a82f21717df81057,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6051f0735dbc21c4a82f21717df81057, type: 2}
@@ -1092,6 +1107,11 @@ Prefab:
         type: 2}
       propertyPath: m_Size.y
       value: 1.450938
+      objectReference: {fileID: 0}
+    - target: {fileID: 114341519799186264, guid: b71556157cd487945be3d3d49eb14c63,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b71556157cd487945be3d3d49eb14c63, type: 2}
@@ -1426,7 +1446,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1821336162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.74, y: 4.47, z: 0}
+  m_LocalPosition: {x: 3.82, y: 4.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1564,7 +1584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 1436286545556484, guid: 5ed406fcb2b667f49b6bbe513f3b896e, type: 2}
-  spawnNpcNumber: 1
+  spawnNpcNumber: 10
   LeftTop: {fileID: 1821336163}
   RightBottom: {fileID: 1828030065}
 --- !u!114 &2095776637 stripped
