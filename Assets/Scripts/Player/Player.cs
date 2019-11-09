@@ -80,8 +80,8 @@ public class Player : MonoBehaviour {
 		if(this.tag=="Ghost"){
 			if(other.tag=="Player"){
 				other.GetComponent<Player>().isStop=true;
-				IPlayer.ShowGameResult(this.GetPlayerInputString,"Dead");
-				other.tag="NPCtest";
+				IPlayer.ShowGameResult(this.tag,"Dead");
+				
 			}
 		}	
 		if(this.tag=="Player"){

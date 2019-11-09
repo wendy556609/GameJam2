@@ -70,7 +70,7 @@ public class Wood : MonoBehaviour
                 //間隔時間，木頭人，換stop
                 break;
             case WoodState.STOP:
-                text.text = "木頭人";
+                text.text = "Wood!";
                 if (Time.time - totTime >= stopTime)
                 {
                     currentState = WoodState.IDLE;   //玩家暫停結束開始動作

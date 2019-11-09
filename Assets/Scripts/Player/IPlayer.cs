@@ -29,7 +29,7 @@ public class IPlayer : MonoBehaviour {
 			else if(state=="Dead"){
 				Debug.Log("_Dead");
 				playDeadCount++;
-				if(playDeadCount==3){
+				if(playDeadCount==1){
 					IGameSystem.SetGameResult(winner,true);
 					Debug.Log(winner+"_Win");
 					isGameEnd=true;
