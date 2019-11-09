@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 public class Player : MonoBehaviour {
-
+	
 	Rigidbody2D playerRigidbody;
 	public GhostChoose ghostChoose;
-	
+	IPlayer IPlayer;
 
 	//數值
 	public float moveSpeed=10;
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 	private float keyVertical;
     private float keyHorizontal;
 	
+	public bool isStart=false;
 	public bool isStop=false;
 	public bool isGhost=false;
 	public bool isWalk=false;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Start () {
+		IPlayer=GameObject.Find("IPlayer").GetComponent<IPlayer>();
 		playerRigidbody=GetComponent<Rigidbody2D>();
 		if(this.name==("Player"+ghostChoose.GetNum())){
 			this.tag="Ghost";
@@ -35,11 +37,21 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// if(!IPlayer.isStart){
+		// 	if(this.tag=="Ghost"){
+		// 		this.GetComponent<Player>().enabled=false;
+		// 	}
+		// }
+		// else {
+		// 	if(this.tag=="Ghost"){
+		// 		this.GetComponent<Player>().enabled=true;
+		// 	}
+		// }
+
 		if(!isStop){
 			GetKey();
 		}
 		else playerRigidbody.velocity= new Vector2(0.0f, 0.0f);
-		// ghostChoose.GetNum();
 	}
 
 	void GetKey(){
@@ -67,14 +79,17 @@ public class Player : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other) {
 		if(this.tag=="Ghost"){
 			if(other.tag=="Player"){
-			other.GetComponent<Player>().isStop=true;
-			Debug.Log(other.GetComponent<Player>().GetPlayerInputString+"_Clear");
+				other.GetComponent<Player>().isStop=true;
+				IPlayer.ShowGameResult(this.GetPlayerInputString,"Dead");
+				other.tag="NPCtest";
 			}
 		}	
 		if(this.tag=="Player"){
 			if(other.tag=="Wood"){
-				Debug.Log(GetPlayerInputString+"_Win");
+				// Debug.Log(GetPlayerInputString+"_Win");
+				IPlayer.ShowGameResult(this.GetPlayerInputString,"Win");
 			}
 		}
 	}
+	
 }

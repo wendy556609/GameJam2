@@ -9,6 +9,7 @@ public class MainUI : MonoBehaviour
     public Text text;
     public void ShowResultUI(string winner)
     {
+        result.SetActive(true);
         switch (winner)
         {
             case "Ghost":
