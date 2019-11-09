@@ -58,14 +58,10 @@ public class Player : MonoBehaviour {
 
 	void Walk(){
 		if(isWalk){
-			// RotateformValue=new Vector3(0,0,step);
 			playerRigidbody.rotation=step;
 			step*=(-1);
-			Debug.Log(step);
 		}
 		else playerRigidbody.rotation=0;
-
-			// this.transform.Rotate(RotateformValue);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
