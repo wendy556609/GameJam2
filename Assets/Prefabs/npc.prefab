@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bf15787dd786e4dad97cba688a7e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wood: {fileID: 0}
   selectPlayerRatio: 0
+  SPEED: 1.5
 --- !u!212 &212997173823592932
 SpriteRenderer:
   m_ObjectHideFlags: 1
