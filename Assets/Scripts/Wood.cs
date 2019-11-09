@@ -40,7 +40,6 @@ public class Wood : MonoBehaviour
                 if (Time.time - lastActTime >= actRestTme)
                 {
                     currentState = WoodState.SPEAK123;         //隨機切換指令
-                    print("WoodState.SPEAK123");
                     totTime=0;
                 }
                 break;
@@ -48,7 +47,6 @@ public class Wood : MonoBehaviour
                 anim.SetTrigger("say123");
                 totTime = Time.time;
                 currentState = WoodState.SPEAKWOOD;
-                print("WoodState.SPEAKWOOD");
                 //123，木頭人，換stop
                 break;
             case WoodState.SPEAKWOOD:
@@ -60,14 +58,13 @@ public class Wood : MonoBehaviour
                         anim.SetTrigger("saywood");
                         totTime = Time.time;
                         triggerFlag = true;
-                        print("saywood");
                     }
                 }
                 if (Time.time - totTime >= anim.GetCurrentAnimatorStateInfo(0).length && triggerFlag)
                 {
                     totTime = Time.time;
                     currentState = WoodState.STOP;
-                    print("WoodState.STOP");
+                print("WoodState.STOP");
                     triggerFlag = false;
                 }
                 //間隔時間，木頭人，換stop
