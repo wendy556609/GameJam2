@@ -7,8 +7,8 @@ public class IGameSystem : MonoBehaviour
     MainUI mainUI;
     Timer m_timer;
 	
-	static string Winner;
-	public bool IsGameWin=false;
+	string Winner;
+	bool IsGameWin=false;
     void Awake()
     {
         m_timer = GetComponent<Timer>();
@@ -25,4 +25,9 @@ public class IGameSystem : MonoBehaviour
 			//show 結果
 		}
     }
+
+	public void SetGameResult(string winner,bool isgamewin){
+		IsGameWin=isgamewin;
+		Winner=winner;
+	}
 }
