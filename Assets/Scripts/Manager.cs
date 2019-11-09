@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour {
     public GameObject npc;
-    float START_X = -9.0f;
-    int spawnNpcNumber = 8;
+    public int spawnNpcNumber;
+    public Transform LeftTop, RightBottom;
+   
 	// Use this for initialization
 	void Start () {
+
+        float offsetY = LeftTop.transform.position.y - RightBottom.transform.position.y;
+        offsetY = offsetY /spawnNpcNumber;
         for (int i = 0; i < spawnNpcNumber; i++)
         {
             GameObject obj = Instantiate(npc);
-            obj.transform.position = new Vector3(START_X, -5+ 2*i, obj.transform.position.z);
+            obj.transform.position = new Vector3(
+                LeftTop.transform.position.x + Random.Range(-1, 1),
+                RightBottom.transform.position.y + offsetY * i,
+                obj.transform.position.z
+            );
         }
       
 	}
