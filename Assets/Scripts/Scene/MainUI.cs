@@ -12,23 +12,23 @@ public class MainUI : MonoBehaviour
         switch (winner)
         {
             case "Ghost":
-                text.text = "GHOST WIN";
+                text.text = "Yellow Luobo Win!";
                 result[1].SetActive(true);
                 break;
             case "Player1":
-                text.text = "Player1 WIN";
+                text.text = "Pineapple1 Win!";
                 result[0].SetActive(true);
                 break;
             case "Player2":
-                text.text = "Player2 WIN";
+                text.text = "Pineapple2 Win!";
                 result[0].SetActive(true);
                 break;
             case "Player3":
-                text.text = "Player3 WIN";
+                text.text = "Pineapple3 Win!";
                 result[0].SetActive(true);
                 break;
             case "Player4":
-                text.text = "Player4 WIN";
+                text.text = "Pineapple4 Win!";
                 result[0].SetActive(true);
                 break;
         }
