@@ -60,8 +60,6 @@ public class NpcBehavior : MonoBehaviour {
         if (moveCounter < moveTime)
         {
             transform.position = getPosition();
-            ROTATE_ANGLE *= -1;
-            transform.rotation = Quaternion.Euler(0, 0, ROTATE_ANGLE);
         }
         else
         {
@@ -72,9 +70,10 @@ public class NpcBehavior : MonoBehaviour {
                 stopMoveCounter = 0;
                 stopTime = getRandomTime(0, MAX_STOP_TIME);
                 moveTime = getRandomTime(MIN_MOVE_TIME, MAX_MOVE_TIME);
+                Debug.Log("moveTime" + moveTime);
             }
-            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+        transform.rotation = getRotation(moveCounter < moveTime);
 
     }
     float getRandomTime(float min, float max)
@@ -92,9 +91,18 @@ public class NpcBehavior : MonoBehaviour {
     {
         Vector2 direction = (target.transform.position - transform.position).normalized;
         direction.x = direction.x > 0 ? direction.x : 0;//上 下 右 右上 右下
-        direction.x = direction.x > MIN_DIRECTION_X ? 1 : 0;
         direction.y = direction.y > MIN_DIRECTION_Y ? 1 : direction.y;//上 下 右 右上 右下
         direction.y = direction.y < -MIN_DIRECTION_Y ? -1 : 0;
+        direction.x = direction.x > MIN_DIRECTION_X ? 1 : 0;
+        if(direction.y == 0 && direction.x == 0)
+        {
+            direction.x = 1;
+        }
+        Debug.Log("direction: " + direction);
         return transform.position + new Vector3(direction.x, direction.y, 0) * Time.deltaTime * SPEED;
+    }
+    Quaternion getRotation(bool isMove)
+    {
+        return isMove ? Quaternion.Euler(0, 0, ROTATE_ANGLE *= -1) : Quaternion.Euler(0, 0, 0);
     }
 }
