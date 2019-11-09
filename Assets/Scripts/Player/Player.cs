@@ -14,16 +14,18 @@ public class Player : MonoBehaviour {
 	public Vector3 RotateformValue;
 	public int step = 5;
 	private int GhostNum;
-	float timer=0;
-	//按鍵
-	private float keyVertical;
+	float timer = 0;
+    float PUNISH_TIME = 0.8f;
+    float BACK_SPEED = -0.15f;
+    //按鍵
+    private float keyVertical;
     private float keyHorizontal;
 	
 	public bool isStart=false;
 	public bool isStop=false;
 	public bool isGhost=false;
 	public bool isWalk=false;
-	bool isMove=false;
+	bool isPunish = false;
 	public string GetPlayerInputString;
 	// Use this for initialization
 	void Awake(){
@@ -54,51 +56,52 @@ public class Player : MonoBehaviour {
 		
 
 		if(!isStop){
-			GetKey();	
-			Punish();
+            if (!isPunish)
+            {
+                GetKey();
+            }
+            else
+            {
+                playerRigidbody.velocity = new Vector2(BACK_SPEED, 0.0f);
+                timer += Time.deltaTime;
+                if(timer >= PUNISH_TIME)
+                {
+                    isPunish = false;
+                    timer = 0;
+                }
+            }
+            Walk();
+            CheckPunish();
 		}
 		else playerRigidbody.velocity= new Vector2(0.0f, 0.0f);
+	}
+	void CheckPunish(){
+		if(isWalk && wood.GetState == WoodState.STOP){
+			if(this.tag=="Player" && !isPunish){
+                isPunish = true;
+                //isWalk = false;
+            }
+        }
+        if(wood.GetState != WoodState.STOP)
+        {
+            isPunish = false;
+            timer = 0;
+        }
 
-		if(keyHorizontal == 0 && keyVertical == 0){
-			isWalk=false;
-		}
-		else isWalk=true;
-		
-		
-		// if(isWalk&&wood.GetState==WoodState.STOP)
-	}
-	void Punish(){
-		if(isWalk&&wood.GetState==WoodState.STOP){
-			if(this.tag=="Player"){
-			timer+=1;
-			isMove=true;
-			if(timer<=1){
-				isMove=true;		
-				}	
-			else {
-				isMove=false;				
-			}	
-			if(isMove){
-			playerRigidbody.velocity = new Vector2(-10,0);
-			}
-			else playerRigidbody.velocity = new Vector2(0,0);
-			}
-		}
-		if(wood.GetState==WoodState.IDLE){
-			if(this.tag=="Player"){
-			isStop=false;
-			isMove=false;
-			}
-		}
-	}
+    }
 	void GetKey(){
 		keyHorizontal=Input.GetAxisRaw(GetPlayerInputString+"_RIGHT");
 		keyVertical=Input.GetAxisRaw(GetPlayerInputString+"_UPDOWN");
 
 		transformValue = new Vector2(keyHorizontal * Time.deltaTime * moveSpeed, keyVertical * Time.deltaTime * moveSpeed);
-		playerRigidbody.velocity = transformValue;   
-		
-		Walk();
+		playerRigidbody.velocity = transformValue;
+
+        if (keyHorizontal == 0 && keyVertical == 0)
+        {
+            isWalk = false;
+        }
+        else isWalk = true;
+       
 	}
 
 	void Walk(){
