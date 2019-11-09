@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 	IPlayer IPlayer;
 
 	//數值
-	public float moveSpeed=10;
+	public float moveSpeed=3f;
 	public Vector2 transformValue;
 	public Vector3 RotateformValue;
 	public int step = 5;
@@ -37,16 +37,16 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// if(!IPlayer.isStart){
-		// 	if(this.tag=="Ghost"){
-		// 		this.GetComponent<Player>().enabled=false;
-		// 	}
-		// }
-		// else {
-		// 	if(this.tag=="Ghost"){
-		// 		this.GetComponent<Player>().enabled=true;
-		// 	}
-		// }
+		if(!GameManager.IsGameStart){
+			if(this.tag=="Ghost"){
+				isStop=true;
+			}
+		}
+		else {
+			if(this.tag=="Ghost"){
+				isStop=false;
+			}
+		}
 
 		if(!isStop){
 			GetKey();
@@ -63,17 +63,17 @@ public class Player : MonoBehaviour {
 		}
 		else isWalk=true;
 
-		transformValue = new Vector2(keyHorizontal * moveSpeed, keyVertical * moveSpeed);
+		transformValue = new Vector2(keyHorizontal * Time.deltaTime * moveSpeed, keyVertical * Time.deltaTime * moveSpeed);
 		playerRigidbody.velocity = transformValue;   
 		Walk();
 	}
 
 	void Walk(){
 		if(isWalk){
-			playerRigidbody.rotation=step;
+			transform.rotation = Quaternion.Euler(0, 0, step);
 			step*=(-1);
 		}
-		else playerRigidbody.rotation=0;
+		else transform.rotation = Quaternion.Euler(0, 0, 0);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {

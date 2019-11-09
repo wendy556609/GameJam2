@@ -5,7 +5,6 @@ using UnityEngine;
 public class IPlayer : MonoBehaviour {
 	public IGameSystem IGameSystem;
 	bool isGameEnd=false;
-	public bool isStart=false;
 	int playDeadCount=0;
 	// Use this for initialization
 	void Awake(){
