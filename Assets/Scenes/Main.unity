@@ -497,7 +497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &575203626
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1439,7 +1439,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1183687371286640, guid: 18f6a452d696bdb41a39c968a2da25a4, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114008419699557884, guid: 18f6a452d696bdb41a39c968a2da25a4,
         type: 2}
@@ -1500,6 +1500,21 @@ Prefab:
         type: 2}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114765092828026672, guid: 18f6a452d696bdb41a39c968a2da25a4,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114765092828026672, guid: 18f6a452d696bdb41a39c968a2da25a4,
+        type: 2}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 114765092828026672, guid: 18f6a452d696bdb41a39c968a2da25a4,
+        type: 2}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f6a452d696bdb41a39c968a2da25a4, type: 2}
