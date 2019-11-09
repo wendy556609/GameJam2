@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Ghost
   - Wood
-  - NPCtest
   layers:
   - Default
   - TransparentFX
