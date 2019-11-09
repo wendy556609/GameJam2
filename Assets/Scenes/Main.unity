@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 1027704200}
   - component: {fileID: 1027704199}
   - component: {fileID: 1027704201}
+  - component: {fileID: 1027704202}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -293,7 +294,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b71eeaa30eb39b4c9a3f0f4666c4fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsGameWin: 0
 --- !u!4 &1027704200
 Transform:
   m_ObjectHideFlags: 0
@@ -319,6 +319,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time_UI: {fileID: 348662460}
+--- !u!114 &1027704202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1027704198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fbbf2f8f12ce6458af0930061c9909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  result: {fileID: 1995455366}
+  text: {fileID: 348662460}
 --- !u!1 &1233051917
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1995455367
 RectTransform:
   m_ObjectHideFlags: 0

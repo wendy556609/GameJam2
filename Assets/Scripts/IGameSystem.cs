@@ -12,6 +12,7 @@ public class IGameSystem : MonoBehaviour
     void Awake()
     {
         m_timer = GetComponent<Timer>();
+		mainUI = GetComponent<MainUI>();
     }
     void Start()
     {
@@ -22,7 +23,7 @@ public class IGameSystem : MonoBehaviour
         if (GameManager.IsGameEnd)       //換場景
             GameManager.m_GoState = 1;
 		else if(IsGameWin){
-			//show 結果
+			mainUI.ShowResultUI(Winner);
 		}
     }
 
