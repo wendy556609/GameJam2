@@ -7,6 +7,7 @@ public class Wood : MonoBehaviour
 {
     public Text text;
     private Animator anim;
+    [SerializeField]
     private WoodState currentState = WoodState.IDLE;
     public WoodState GetState { get { return currentState; } }
 
@@ -16,6 +17,8 @@ public class Wood : MonoBehaviour
     private float speakStartTime;          //開始講話時間
     [SerializeField]
     private float speakRestTime;        //123，木頭人間隔時間
+    private float totTime;
+    private bool triggerFlag = false;
     private float stopTime = 5.0f;      //木頭人暫停時間
 
     private float stopStartTime;        //木頭人暫停時間
@@ -33,38 +36,52 @@ public class Wood : MonoBehaviour
         {
             case WoodState.IDLE:
                 //待機
-                text.text= "";
+                text.text = "";
                 if (Time.time - lastActTime >= actRestTme)
                 {
                     currentState = WoodState.SPEAK123;         //隨機切換指令
+                    print("WoodState.SPEAK123");
+                    totTime=0;
                 }
                 break;
             case WoodState.SPEAK123:
                 anim.SetTrigger("say123");
-                speakStartTime = Time.time;
+                totTime = Time.time;
                 currentState = WoodState.SPEAKWOOD;
+                print("WoodState.SPEAKWOOD");
                 //123，木頭人，換stop
                 break;
             case WoodState.SPEAKWOOD:
                 text.text = "123";
-                if (Time.time - speakStartTime >= anim.GetCurrentAnimatorStateInfo(0).length + speakRestTime)
+                if (Time.time - totTime >= anim.GetCurrentAnimatorStateInfo(0).length + speakRestTime) //123動畫+間隔時間
                 {
-                    anim.SetTrigger("saywood");
-                    stopStartTime = Time.time;
+                    if (!triggerFlag)
+                    {
+                        anim.SetTrigger("saywood");
+                        totTime = Time.time;
+                        triggerFlag = true;
+                        print("saywood");
+                    }
+                }
+                if (Time.time - totTime >= anim.GetCurrentAnimatorStateInfo(0).length && triggerFlag)
+                {
+                    totTime = Time.time;
                     currentState = WoodState.STOP;
+                    print("WoodState.STOP");
+                    triggerFlag = false;
                 }
                 //間隔時間，木頭人，換stop
                 break;
             case WoodState.STOP:
-                if (Time.time - stopStartTime >= stopTime)
+                text.text = "木頭人";
+                if (Time.time - totTime >= stopTime)
                 {
                     currentState = WoodState.IDLE;   //玩家暫停結束開始動作
+                    print("WoodState.IDLE");
                     anim.SetTrigger("trunback");
                     RandomActTime();        //更新行動間隔時間
-                    text.text= "";
+                    text.text = "";
                 }
-                else if(Time.time - stopStartTime >= anim.GetCurrentAnimatorStateInfo(0).length)
-                    text.text = "木頭人";
                 break;
         }
     }
