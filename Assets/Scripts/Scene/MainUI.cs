@@ -7,8 +7,20 @@ public class MainUI : MonoBehaviour
 {
     public GameObject [] result=new GameObject[2];
     public Text text;
+    Timer m_timer;
+
+    void Awake()
+    {
+        m_timer = GetComponent<Timer>();
+    }
+    void PlayWinSong()
+    {
+        GameManager.song=GameObject.Find("winsong").GetComponent<AudioSource>();
+        GameManager.PlaySong();
+    }
     public void ShowResultUI(string winner)
     {
+        PlayWinSong();
         switch (winner)
         {
             case "Ghost":
@@ -32,5 +44,6 @@ public class MainUI : MonoBehaviour
                 result[0].SetActive(true);
                 break;
         }
+        m_timer.PlayTimer("GoStartTimer");
     }
 }

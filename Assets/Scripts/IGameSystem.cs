@@ -6,29 +6,39 @@ public class IGameSystem : MonoBehaviour
 {
     MainUI mainUI;
     Timer m_timer;
-	
-	string Winner;
-	bool IsGameWin=false;
+    bool stopsongflag=false;
+    public bool showflag=false;
+    string Winner;
     void Awake()
     {
         m_timer = GetComponent<Timer>();
-		mainUI = GetComponent<MainUI>();
+        mainUI = GetComponent<MainUI>();
     }
     void Start()
     {
-		m_timer.PlayTimer();
+        m_timer.PlayTimer("DecreaseTimer");
     }
     void Update()
     {
-        if (GameManager.IsGameEnd)       //換場景
+        if (GameManager.IsGameEnd){       //換場景
             GameManager.m_GoState = 1;
-		else if(IsGameWin){
-			mainUI.ShowResultUI(Winner);
-		}
+            GameManager.IsGameEnd=false;
+        }
+        else if (GameManager.IsGameWin&&!stopsongflag)
+        {
+            GameManager.StopSong();
+            stopsongflag=true;
+            m_timer.PlayTimer("StopGameTimer");
+        }
+        else if(showflag){
+            mainUI.ShowResultUI(Winner);
+            showflag=false;
+        }
     }
-
-	public void SetGameResult(string winner,bool isgamewin){
-		IsGameWin=isgamewin;
-		Winner=winner;
-	}
+    
+    public void SetGameResult(string winner, bool isgamewin)
+    {
+        GameManager.IsGameWin = isgamewin;
+        Winner = winner;
+    }
 }
