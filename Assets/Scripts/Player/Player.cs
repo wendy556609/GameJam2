@@ -54,6 +54,9 @@ public class Player : MonoBehaviour {
 				isStop=false;
 			}
 		}
+		if(GameManager.IsGameWin){
+			isStop=true;
+		}
 
 		
 		if(!isStop){
