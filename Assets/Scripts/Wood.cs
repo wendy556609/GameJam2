@@ -61,16 +61,15 @@ public class Wood : MonoBehaviour
                     if (!triggerFlag)
                     {
                         anim.SetTrigger("saywood");
+                        audioWood.Play();
                         totTime = Time.time;
                         triggerFlag = true;
                     }
                 }
-                if (Time.time - totTime >= anim.GetCurrentAnimatorStateInfo(0).length && triggerFlag)
+                if (Time.time - totTime >= anim.GetCurrentAnimatorStateInfo(0).length && triggerFlag) //木頭人動畫播完
                 {
                     totTime = Time.time;
                     currentState = WoodState.STOP;
-                    audioWood.Play();
-                    print("WoodState.STOP");
                     triggerFlag = false;
                 }
                 //間隔時間，木頭人，換stop
@@ -80,7 +79,6 @@ public class Wood : MonoBehaviour
                 if (Time.time - totTime >= stopTime)
                 {
                     currentState = WoodState.IDLE;   //玩家暫停結束開始動作
-                    print("WoodState.IDLE");
                     anim.SetTrigger("trunback");
                     RandomActTime();        //更新行動間隔時間
                     text.text = "";
