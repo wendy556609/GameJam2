@@ -1,21 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class IPlayer : MonoBehaviour {
-	GameObject Player1;
-	GameObject Player2;
-	GameObject Player3;
-	GameObject Player4;
+	public GameObject[] Player;
+	public GameObject[] text;
 	public IGameSystem IGameSystem;
 	bool isGameEnd=false;
 	int playDeadCount=0;
+	Vector3[] position=new Vector3[4];
+	string[] player=new string[4];
+
 	// Use this for initialization
 	void Awake(){
-		Player1=GameObject.Find("Player1");
-		Player2=GameObject.Find("Player2");
-		Player3=GameObject.Find("Player3");
-		Player4=GameObject.Find("Player4");
 	}
 	void Start () {
 	}
@@ -23,7 +20,16 @@ public class IPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(isGameEnd){
-		SetColor(Color.red,"GameEnd");
+				position[0]=Player[0].GetComponent<Transform>().position;
+				position[1]=Player[1].GetComponent<Transform>().position;
+				position[2]=Player[2].GetComponent<Transform>().position;
+				position[3]=Player[3].GetComponent<Transform>().position;
+				player[0]=Player[0].GetComponent<Player>().GetPlayerInputString;
+				player[1]=Player[1].GetComponent<Player>().GetPlayerInputString;
+				player[2]=Player[2].GetComponent<Player>().GetPlayerInputString;
+				player[3]=Player[3].GetComponent<Player>().GetPlayerInputString;
+				// Debug.Log(position[0]);
+			SetColor("GameEnd");
 		}
 	}
 
@@ -43,17 +49,12 @@ public class IPlayer : MonoBehaviour {
 			}
 		}
 	}
-	void SetColor(Color color,string LayerName){
-			Player1.GetComponent<SpriteRenderer>().color = color;
-			Player1.GetComponent<SpriteRenderer>().sortingLayerName=LayerName;
-
-			Player2.GetComponent<SpriteRenderer>().color = color;
-			Player2.GetComponent<SpriteRenderer>().sortingLayerName=LayerName;
-
-			Player3.GetComponent<SpriteRenderer>().color = color;
-			Player3.GetComponent<SpriteRenderer>().sortingLayerName=LayerName;
-
-			Player4.GetComponent<SpriteRenderer>().color = color;
-			Player4.GetComponent<SpriteRenderer>().sortingLayerName=LayerName;
+	void SetColor(string LayerName){
+			for(int i=0;i<4;i++){
+				Player[i].GetComponent<SpriteRenderer>().sortingLayerName=LayerName;
+				Player[i].GetComponent<SpriteRenderer>().color = Color.red;
+				text[i].GetComponent<RectTransform>().position=position[i];
+				text[i].GetComponent<Text>().text=player[i];
+			}
 	}
 }

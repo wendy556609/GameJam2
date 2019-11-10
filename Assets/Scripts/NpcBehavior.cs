@@ -44,7 +44,7 @@ public class NpcBehavior : MonoBehaviour {
             changeTarget();
             if(!GameManager.IsGameWin) move();
         }
-        Debug.Log("win: " + GameManager.IsGameWin);
+        // Debug.Log("win: " + GameManager.IsGameWin);
     }
 
     void changeTarget()

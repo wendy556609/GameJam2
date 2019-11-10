@@ -14,7 +14,7 @@ public class Player : MonoBehaviour {
 	public Vector3 RotateformValue;
 	public int step = 5;
 	float timer = 0;
-    float PUNISH_TIME = 0.8f;
+    float PUNISH_TIME = 2f;
     float BACK_SPEED = -0.15f;
     //按鍵
     private float keyVertical;
@@ -66,9 +66,10 @@ public class Player : MonoBehaviour {
                 playerRigidbody.velocity = new Vector2(BACK_SPEED, 0.0f);
                 timer += Time.deltaTime;
                 if(timer >= PUNISH_TIME)
-                {
+               	{					
                     isPunish = false;
                     timer = 0;
+					isWalk = false;
                 }
             }
             Walk();
@@ -80,7 +81,6 @@ public class Player : MonoBehaviour {
 		if(isWalk && wood.GetState == WoodState.STOP){
 			if(this.tag=="Player" && !isPunish){
                 isPunish = true;
-                // isWalk = false;
             }
         }
         if(wood.GetState != WoodState.STOP)
