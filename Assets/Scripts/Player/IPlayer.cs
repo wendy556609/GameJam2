@@ -25,7 +25,7 @@ public class IPlayer : MonoBehaviour {
 			for(int i=0;i<4;i++){
 				Vector2 screenPos = Camera.main.WorldToScreenPoint(Player[i].GetComponent<Transform>().position);
 				position[i]=screenPos;
-				position[i].y+=125.0f;
+				position[i].y+=100f;
 				player[i]=Player[i].GetComponent<Player>().GetPlayerInputString;
 			}
 			SetColor("GameEnd");
