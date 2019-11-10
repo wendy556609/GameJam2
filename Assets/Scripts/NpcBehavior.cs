@@ -42,8 +42,9 @@ public class NpcBehavior : MonoBehaviour {
         if (wood.GetComponent<Wood>().GetState != WoodState.STOP && GameManager.IsGameStart)
         {
             changeTarget();
-            move();
+            if(!GameManager.IsGameWin) move();
         }
+        Debug.Log("win: " + GameManager.IsGameWin);
     }
 
     void changeTarget()
