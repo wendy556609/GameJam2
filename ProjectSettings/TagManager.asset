@@ -49,6 +49,9 @@ TagManager:
   - name: Player
     uniqueID: 3564822421
     locked: 0
+  - name: GameEnd
+    uniqueID: 3487164041
+    locked: 0
   - name: UI
     uniqueID: 4055186985
     locked: 0

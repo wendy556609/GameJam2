@@ -6,14 +6,13 @@ public class Player : MonoBehaviour {
 	Rigidbody2D playerRigidbody;
 	public GhostChoose ghostChoose;
 	IPlayer IPlayer;
+	Transform LeftTop, RightBottom;
 
 	//數值
-	public float backX=-2;
 	public float moveSpeed=3f;
 	public Vector2 transformValue;
 	public Vector3 RotateformValue;
 	public int step = 5;
-	private int GhostNum;
 	float timer = 0;
     float PUNISH_TIME = 0.8f;
     float BACK_SPEED = -0.15f;
@@ -21,9 +20,7 @@ public class Player : MonoBehaviour {
     private float keyVertical;
     private float keyHorizontal;
 	
-	public bool isStart=false;
 	public bool isStop=false;
-	public bool isGhost=false;
 	public bool isWalk=false;
 	bool isPunish = false;
 	public string GetPlayerInputString;
@@ -32,9 +29,14 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Start () {
+		LeftTop=GameObject.Find("lefttopwall").GetComponent<Transform>();
+		RightBottom=GameObject.Find("rightbottomwall").GetComponent<Transform>();
+
 		wood=GameObject.Find("Wood").GetComponent<Wood>();
 		IPlayer=GameObject.Find("IPlayer").GetComponent<IPlayer>();
+
 		playerRigidbody=GetComponent<Rigidbody2D>();
+
 		if(this.name==("Player"+ghostChoose.GetNum())){
 			this.tag="Ghost";
 		}
@@ -54,7 +56,6 @@ public class Player : MonoBehaviour {
 		}
 
 		
-
 		if(!isStop){
             if (!isPunish)
             {
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour {
 		if(isWalk && wood.GetState == WoodState.STOP){
 			if(this.tag=="Player" && !isPunish){
                 isPunish = true;
-                //isWalk = false;
+                // isWalk = false;
             }
         }
         if(wood.GetState != WoodState.STOP)
@@ -94,7 +95,17 @@ public class Player : MonoBehaviour {
 		keyVertical=Input.GetAxisRaw(GetPlayerInputString+"_UPDOWN");
 
 		transformValue = new Vector2(keyHorizontal * Time.deltaTime * moveSpeed, keyVertical * Time.deltaTime * moveSpeed);
+
+		if(this.transform.position.y>=LeftTop.transform.position.y){
+			
+			transformValue = new Vector2(keyHorizontal * Time.deltaTime * moveSpeed,-1.0f);
+		}
+		else if(this.transform.position.y<=RightBottom.transform.position.y){
+			transformValue = new Vector2(keyHorizontal * Time.deltaTime * moveSpeed,1.0f);
+		}
+
 		playerRigidbody.velocity = transformValue;
+		
 
         if (keyHorizontal == 0 && keyVertical == 0)
         {
@@ -116,13 +127,11 @@ public class Player : MonoBehaviour {
 		if(this.tag=="Ghost"){
 			if(other.tag=="Player"){
 				other.GetComponent<Player>().isStop=true;
-				IPlayer.ShowGameResult(this.tag,"Dead");
-				
+				IPlayer.ShowGameResult(this.tag,"Dead");				
 			}
 		}	
 		if(this.tag=="Player"){
 			if(other.tag=="Wood"){
-				// Debug.Log(GetPlayerInputString+"_Win");
 				IPlayer.ShowGameResult(this.GetPlayerInputString,"Win");
 			}
 		}
