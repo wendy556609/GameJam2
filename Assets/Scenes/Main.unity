@@ -543,7 +543,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4168994847443570, guid: 5bbeef7dc9cc087498c1092b13b021a2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.42
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 4168994847443570, guid: 5bbeef7dc9cc087498c1092b13b021a2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1239,7 +1239,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4973498539740140, guid: 6051f0735dbc21c4a82f21717df81057, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.32
+      value: 3.84
       objectReference: {fileID: 0}
     - target: {fileID: 4973498539740140, guid: 6051f0735dbc21c4a82f21717df81057, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2127,7 +2127,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000011920929, y: 0.03386283}
+  m_Offset: {x: 0.006553054, y: 0.040415883}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2138,7 +2138,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2324355, y: 2.616218}
+  m_Size: {x: 1.4616649, y: 1.393549}
   m_EdgeRadius: 0
 --- !u!1001 &1382720207
 Prefab:
@@ -2153,7 +2153,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4546464013482422, guid: b71556157cd487945be3d3d49eb14c63, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.38
+      value: -3.86
       objectReference: {fileID: 0}
     - target: {fileID: 4546464013482422, guid: b71556157cd487945be3d3d49eb14c63, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2821,7 +2821,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1821336162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.9, y: 4.99, z: 0}
+  m_LocalPosition: {x: -8.9, y: 5.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2849,7 +2849,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1828030064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.5, y: -5.21, z: 0}
+  m_LocalPosition: {x: 8.6, y: -4.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
