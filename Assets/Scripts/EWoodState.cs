@@ -5,5 +5,6 @@ public enum WoodState
     SPEAK123,
     SPEAKWOOD,
     STOP,
+    STOPGAME,
 
 }

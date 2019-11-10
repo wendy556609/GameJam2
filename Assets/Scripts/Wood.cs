@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Wood : MonoBehaviour
 {
+    public AudioSource audio123,audioWood;
     public Text text;
     private Animator anim;
     [SerializeField]
@@ -32,6 +33,9 @@ public class Wood : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.IsGameWin){
+            currentState = WoodState.STOPGAME;
+        }
         switch (currentState)
         {
             case WoodState.IDLE:
@@ -45,6 +49,7 @@ public class Wood : MonoBehaviour
                 break;
             case WoodState.SPEAK123:
                 anim.SetTrigger("say123");
+                audio123.Play();
                 totTime = Time.time;
                 currentState = WoodState.SPEAKWOOD;
                 //123，木頭人，換stop
@@ -64,7 +69,8 @@ public class Wood : MonoBehaviour
                 {
                     totTime = Time.time;
                     currentState = WoodState.STOP;
-                print("WoodState.STOP");
+                    audioWood.Play();
+                    print("WoodState.STOP");
                     triggerFlag = false;
                 }
                 //間隔時間，木頭人，換stop
@@ -79,6 +85,10 @@ public class Wood : MonoBehaviour
                     RandomActTime();        //更新行動間隔時間
                     text.text = "";
                 }
+                break;
+            case WoodState.STOPGAME:
+                //待機
+                text.text = "";
                 break;
         }
     }

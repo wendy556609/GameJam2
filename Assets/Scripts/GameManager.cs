@@ -44,7 +44,10 @@ public class GameManager : MonoBehaviour
                 m_GoState = 0;
                 state = "Start";
                 song = GameObject.Find("SongBackground").GetComponent<AudioSource>();
-                GameManager.PlaySong();
+                PlaySong();
+                IsGameWin=false;
+                IsGameEnd=false;
+                IsGameStart = false;
                 break;
             case 2:
                 m_SceneStateController.SetState(new MainState(m_SceneStateController), "Main");

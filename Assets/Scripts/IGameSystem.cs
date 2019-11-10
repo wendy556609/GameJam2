@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class IGameSystem : MonoBehaviour
 {
+    
+    public AudioSource audioTimer;
     MainUI mainUI;
     Timer m_timer;
     bool stopsongflag=false;
@@ -17,6 +19,7 @@ public class IGameSystem : MonoBehaviour
     void Start()
     {
         m_timer.PlayTimer("DecreaseTimer");
+        audioTimer.Play();
     }
     void Update()
     {
