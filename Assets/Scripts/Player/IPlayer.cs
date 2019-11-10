@@ -15,20 +15,19 @@ public class IPlayer : MonoBehaviour {
 	void Awake(){
 	}
 	void Start () {
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(isGameEnd){
-				position[0]=Player[0].GetComponent<Transform>().position;
-				position[1]=Player[1].GetComponent<Transform>().position;
-				position[2]=Player[2].GetComponent<Transform>().position;
-				position[3]=Player[3].GetComponent<Transform>().position;
-				player[0]=Player[0].GetComponent<Player>().GetPlayerInputString;
-				player[1]=Player[1].GetComponent<Player>().GetPlayerInputString;
-				player[2]=Player[2].GetComponent<Player>().GetPlayerInputString;
-				player[3]=Player[3].GetComponent<Player>().GetPlayerInputString;
-				// Debug.Log(position[0]);
+			
+			for(int i=0;i<4;i++){
+				Vector2 screenPos = Camera.main.WorldToScreenPoint(Player[i].GetComponent<Transform>().position);
+				position[i]=screenPos;
+				position[i].y+=125.0f;
+				player[i]=Player[i].GetComponent<Player>().GetPlayerInputString;
+			}
 			SetColor("GameEnd");
 		}
 	}
